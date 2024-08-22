@@ -20,14 +20,16 @@ public class LaptopPage {
     private SelenideElement laptopsCategory = Selenide.$(By.cssSelector(CATEGORY_LAPTOPS));
     private SelenideElement header = $(byCssSelector("h1"));
 
-    public void navigateToLaptopsCategory() {
+    public LaptopPage navigateToLaptopsCategory() {
         category.hover().click();
         electronicsCategory.shouldBe(visible).click();
         laptopsAndComputersCategory.shouldBe(visible, enabled).click();
         laptopsCategory.shouldBe(visible, enabled).click();
+        return this;
     }
 
-    public void verifyLaptopsPage() {
+    public LaptopPage verifyLaptopsPage() {
         header.shouldHave(Condition.text(LAPTOPS));
+        return this;
     }
 }

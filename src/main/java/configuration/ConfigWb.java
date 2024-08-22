@@ -8,6 +8,6 @@ public class ConfigWb {
     public static void getConfig() {
         Configuration.browserSize = "1920x1080";
         open("https://www.wildberries.ru/");
-        Configuration.timeout = 50000;
+        Configuration.timeout = 30000;
     }
 }

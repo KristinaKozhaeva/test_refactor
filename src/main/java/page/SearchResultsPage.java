@@ -18,25 +18,30 @@ public class SearchResultsPage {
     private SelenideElement clearSearch = $(CLEAR_SEARCH);
     private SelenideElement searchInput = $(SEARCH_INPUT);
 
-    public void verifySearchResult(String expectedText) {
+    public SearchResultsPage verifySearchResult(String expectedText) {
         searchResult.shouldHave(text(expectedText));
+        return this;
     }
 
-    public void verifyFirstFilterText(String expectedText) {
+    public SearchResultsPage verifyFirstFilterText(String expectedText) {
         firstFilter.shouldHave(text(expectedText));
+        return this;
     }
 
-    public void verifySecondFilterText(String expectedText) {
+    public SearchResultsPage verifySecondFilterText(String expectedText) {
         secondFilter.shouldHave(text(expectedText));
+        return this;
     }
 
-    public void verifyProductBrand(String expectedBrand) {
+    public SearchResultsPage verifyProductBrand(String expectedBrand) {
         productCard.shouldBe(visible);
         productBrand.shouldHave(text(expectedBrand));
+        return this;
     }
 
-    public void clearSearchInput() {
+    public SearchResultsPage clearSearchInput() {
         clearSearch.click();
         searchInput.shouldBe(empty);
+        return this;
     }
 }
