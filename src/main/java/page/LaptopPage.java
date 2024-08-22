@@ -28,8 +28,8 @@ public class LaptopPage {
         return this;
     }
 
-    public LaptopPage verifyLaptopsPage() {
+    public FiltersPage verifyLaptopsPageAndGetFilter() {
         header.shouldHave(Condition.text(LAPTOPS));
-        return this;
+        return new FiltersPage();
     }
 }

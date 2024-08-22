@@ -28,18 +28,19 @@ public class WildberriesTests {
     @Test
     @DisplayName("Смена города")
     public void changeCityTest() {
-        LocationChangePage locationChangePage = homePage.clickChangeLocation();
-        String selectedAddress = locationChangePage.enterCity("Санкт-Петербург")
-                .getSelectedAddress();
-        locationChangePage.confirmAddressSelection()
+        String selectedAddress = "Санкт-Петербург";
+        homePage
+                .clickChangeLocation()
+                .selectAndConfirmAddressSelection(selectedAddress)
                 .verifyChangedLocation(selectedAddress);
     }
 
     @Test
     @DisplayName("Работа с поисковой строкой")
     public void searchBarTest() {
-        SearchResultsPage searchResultsPage = homePage.enterSearchText(TestData.DATA_TO_ENTER);
-        searchResultsPage.verifySearchResult(TestData.DATA_TO_ENTER)
+        homePage
+                .enterSearchText(TestData.DATA_TO_ENTER)
+                .verifySearchResult(TestData.DATA_TO_ENTER)
                 .verifyFirstFilterText(TestData.FIRST_FILTER_TEXT)
                 .verifySecondFilterText(TestData.SECOND_FILTER_TEXT)
                 .verifyProductBrand(TestData.BRAND)
@@ -50,12 +51,9 @@ public class WildberriesTests {
     @DisplayName("Работа с фильтрами")
     public void usageFiltersTest() {
         LaptopPage laptopPage = new LaptopPage();
-        FiltersPage filtersPage = new FiltersPage();
-
         laptopPage.navigateToLaptopsCategory()
-                .verifyLaptopsPage();
-
-        filtersPage.clickAllFiltersDropdown()
+                .verifyLaptopsPageAndGetFilter()
+                .clickAllFiltersDropdown()
                 .setPriceRange(TestData.PRICE_MIN, TestData.PRICE_MAX)
                 .applyFilters(TestData.BRAND, TestData.SCREEN_DIAGONAL, TestData.DELIVERY_TIME)
                 .verifyFilteredResults();

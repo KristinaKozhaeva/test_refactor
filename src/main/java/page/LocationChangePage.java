@@ -17,26 +17,26 @@ public class LocationChangePage {
     private SelenideElement addressSelectionButton = $(ADDRESS_SELECTION_BUTTON);
     private SelenideElement changeLocation = $(CHANGE_LOCATION);
 
-    public LocationChangePage enterCity(String city) {
+    public LocationChangePage selectAndConfirmAddressSelection(String city) {
         enteringAddress.setValue(city).pressEnter();
         addressElement.shouldBe(visible).click();
         pickupPoint.shouldBe(visible);
-        return this;
-    }
 
-    public LocationChangePage confirmAddressSelection() {
+        String selectedAddress = getSelectedAddress();
         addressSelectionButton.click();
         pickupPoint.shouldNotBe(visible);
-        return this;
-    }
-
-    public LocationChangePage verifyChangedLocation(String selectedAddress) {
         changeLocation.shouldHave(text(selectedAddress));
+
         return this;
     }
 
     public String getSelectedAddress() {
         addressDetails.shouldBe(visible, Duration.ofSeconds(30));
         return addressDetails.getText();
+    }
+
+    public LocationChangePage verifyChangedLocation(String selectedAddress) {
+        changeLocation.shouldHave(text(selectedAddress));
+        return this;
     }
 }

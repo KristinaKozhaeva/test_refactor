@@ -1,5 +1,6 @@
 package page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
@@ -19,23 +20,23 @@ public class SearchResultsPage {
     private SelenideElement searchInput = $(SEARCH_INPUT);
 
     public SearchResultsPage verifySearchResult(String expectedText) {
-        searchResult.shouldHave(text(expectedText));
+        searchResult.shouldHave(Condition.text(expectedText));
         return this;
     }
 
     public SearchResultsPage verifyFirstFilterText(String expectedText) {
-        firstFilter.shouldHave(text(expectedText));
+        firstFilter.shouldHave(Condition.text(expectedText));
         return this;
     }
 
     public SearchResultsPage verifySecondFilterText(String expectedText) {
-        secondFilter.shouldHave(text(expectedText));
+        secondFilter.shouldHave(Condition.text(expectedText));
         return this;
     }
 
     public SearchResultsPage verifyProductBrand(String expectedBrand) {
-        productCard.shouldBe(visible);
-        productBrand.shouldHave(text(expectedBrand));
+        productCard.shouldBe(Condition.visible);
+        productBrand.shouldHave(Condition.text(expectedBrand));
         return this;
     }
 
